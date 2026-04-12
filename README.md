@@ -1,45 +1,89 @@
-Mobile Price Classification Project
-Overview
-This project applies machine learning techniques to classify mobile phones into distinct price ranges based on their hardware specifications (such as RAM, battery power, and camera quality). The project includes exploratory data analysis (EDA), an ablation study, and the evaluation of multiple models including Logistic Regression, Support Vector Machines (SVM), and Random Forests.
+#  Mobile Price Prediction
 
-Package Requirements
-To run the Jupyter Notebook smoothly, ensure you have Python 3.8 or higher installed. The required libraries are listed below.
+##  Dataset
+Dataset used:  
+https://www.kaggle.com/datasets/iabhishekofficial/mobile-price-classification
 
-You can save the following list in a requirements.txt file:
-pandas>=1.3.0
-numpy>=1.21.0
-scikit-learn>=1.0.0
-matplotlib>=3.4.0
-seaborn>=0.11.0
-jupyter>=1.0.0
-Note: If you decided to keep kagglehub to download the dataset programmatically, you should add kagglehub to this list. Otherwise, ensure your downloaded train.csv and test.csv are in the project folder.
+---
 
-Run Instructions
-Follow these steps to set up and execute the project locally:
+##  Problem Statement
+Given the various parameters of a mobile device, predict the price category of the device.  
+Additionally:
+- Identify which features most strongly influence price  
+- Analyze which features contribute the least and most variation  
+- Study how different features relate to device characteristics  
 
-1. Clone or Extract the Project
-Ensure all project files, including the mobile_price_prediction.ipynb notebook and the dataset files (train.csv / test.csv), are located in the same directory.
+---
 
-2. Set Up a Virtual Environment (Recommended)
-Open your terminal or command prompt, navigate to the project directory, and create a virtual environment to keep dependencies isolated:
-python -m venv env
+##  Approach
 
-Activate the environment:
+We followed a structured machine learning pipeline:
 
-Windows: .\env\Scripts\activate
+1. **Exploratory Data Analysis (EDA)**
+   - Analyzed feature relationships using correlation heatmaps and plots  
+   - Observed strong relationship between RAM and price  
 
-macOS/Linux: source env/bin/activate
+2. **Hypothesis Formation**
+   - Dataset is largely **linearly separable**, primarily driven by RAM  
 
-3. Install Dependencies
-Install the required packages using pip. If you created a requirements.txt file, run:
-pip install -r requirements.txt
+3. **Preprocessing**
+   - Train-test split (80:20)  
+   - Feature scaling using `StandardScaler`  
+   - No data leakage (scaler fitted only on training data)  
 
-4. Launch the Jupyter Notebook
-Start the Jupyter Notebook server by running:
-jupyter notebook
+4. **Modeling**
+   - Logistic Regression (baseline model)  
+   - Support Vector Machine (SVM)  
+   - k-Nearest Neighbors (kNN)  
 
-5. Execute the Code
+5. **Model Comparison**
+   - Compared performance across models to validate hypothesis  
 
-Your browser will open the Jupyter dashboard.
-Click on mobile_price_prediction.ipynb to open it.
-Navigate to the top menu and select Cell > Run All to execute the EDA, train the models, and view the final PCA and ablation study results.
+6. **Explainability**
+   - Used Logistic Regression coefficients to determine feature importance  
+
+7. **Ablation Study**
+   - Removed RAM and retrained model  
+   - Observed significant performance drop  
+
+8. **Error Analysis**
+   - Used confusion matrix to analyze misclassification patterns  
+
+9. **Dimensionality Reduction**
+   - Applied PCA to visualize data in 2D space  
+
+10. **Model Validation**
+   - Performed 5-fold cross-validation to ensure robustness  
+
+---
+
+##  Results
+
+| Model                  | Accuracy |
+|-----------------------|----------|
+| Logistic Regression   | 97.5%    |
+| SVM                   | 89.25%   |
+| kNN                   | 53%      |
+
+### Cross-Validation
+- Mean accuracy: ~95%  
+- Low variance across folds → model is stable and generalizes well  
+
+---
+
+##  Key Insights
+
+- **RAM is the most influential feature** by a large margin  
+- Logistic Regression performs best → confirms linear separability  
+- Removing RAM drops accuracy from ~97.5% to ~33%  
+- Errors occur only between adjacent classes (expected behavior)  
+- PCA shows overlap in 2D, but separation exists in higher dimensions  
+
+---
+
+##  Requirements
+
+Install the following libraries:
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn kagglehub
