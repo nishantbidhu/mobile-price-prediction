@@ -1,9 +1,5 @@
 #  Mobile Price Prediction
 
-##  Dataset
-Dataset used:  
-https://www.kaggle.com/datasets/iabhishekofficial/mobile-price-classification
-
 ---
 
 ##  Problem Statement
@@ -14,6 +10,42 @@ Additionally:
 - Study how different features relate to device characteristics  
 
 ---
+
+##  Group Members
+
+- Nishant — B24CS1050  
+- Amar Sisodiya — B24EE1002  
+- Payal Tatawat — B24EE1057  
+- Pamarthi Sunanda — B24EE1051  
+
+##  Dataset
+Dataset used:  
+https://www.kaggle.com/datasets/iabhishekofficial/mobile-price-classification
+
+##  Colab Notebook
+https://colab.research.google.com/drive/10cmCM4Bz-jUwVnVtCG21mIMsg2Bt1MiH?usp=sharing
+
+##  How to Run
+
+1. Open the Colab notebook using the link above  
+2. Run all cells sequentially  
+3. The notebook will:
+   - Load dataset  
+   - Perform preprocessing  
+   - Train models  
+   - Display results and visualizations  
+
+Alternatively:
+1. Install required libraries  
+2. Run the notebook locally using Jupyter/Colab
+
+Install the following libraries:
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn kagglehub
+```
+
+
 
 ##  Approach
 
@@ -63,7 +95,7 @@ We followed a structured machine learning pipeline:
 |-----------------------|----------|
 | Logistic Regression   | 97.5%    |
 | SVM                   | 89.25%   |
-| kNN                   | 53%      |
+| kNN                   | 60.8%      |
 
 ### Cross-Validation
 - Mean accuracy: ~95%  
